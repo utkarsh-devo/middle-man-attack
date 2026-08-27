@@ -1,0 +1,82 @@
+{
+  "report_metadata": {
+    "title": "Security Assessment Report",
+    "game": "Unity Game (w.3pati.in)",
+    "date": "2026-06-18",
+    "assessor": "Security Tester",
+    "version": "1.0"
+  },
+  "executive_summary": {
+    "total_vulnerabilities": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "overall_risk": "LOW",
+    "summary": "Game demonstrates strong server-side validation for chip balances. No critical vulnerabilities found in initial testing."
+  },
+  "test_cases": [
+    {
+      "id": "TC-001",
+      "name": "Parameter Tampering - st3",
+      "description": "Attempted to modify the st3 parameter to an arbitrary value",
+      "status": "PASS",
+      "severity": "LOW",
+      "result": "Server rejected or ignored the modified value",
+      "recommendation": "No action required - server validation is working",
+      "evidence": "Modified request sent but game balance remained unchanged"
+    },
+    {
+      "id": "TC-002",
+      "name": "Authentication Bypass - uid",
+      "description": "Attempted to change uid to impersonate another user",
+      "status": "PENDING",
+      "severity": "CRITICAL",
+      "result": "",
+      "recommendation": "",
+      "evidence": ""
+    }
+  ],
+  "attack_vector_results": {
+    "replay_attack": {
+      "tested": false,
+      "vulnerable": false,
+      "notes": ""
+    },
+    "uid_manipulation": {
+      "tested": false,
+      "vulnerable": false,
+      "notes": ""
+    },
+    "event_manipulation": {
+      "tested": false,
+      "vulnerable": false,
+      "notes": ""
+    },
+    "parameter_pollution": {
+      "tested": false,
+      "vulnerable": false,
+      "notes": ""
+    },
+    "fuzzing": {
+      "tested": false,
+      "vulnerable": false,
+      "notes": ""
+    },
+    "signature_bypass": {
+      "tested": false,
+      "vulnerable": false,
+      "notes": ""
+    }
+  },
+  "recommendations": [
+    "Continue to enforce server-side validation",
+    "Consider adding request signing for additional protection",
+    "Implement rate limiting to prevent automated attacks"
+  ],
+  "raw_data": {
+    "test_environment": "mitmproxy on Windows 10/11",
+    "game_parameters": ["st1", "st2", "st3", "n", "v", "sid", "uid"],
+    "test_requests": []
+  }
+}
